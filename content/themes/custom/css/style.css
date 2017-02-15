@@ -1,0 +1,139 @@
+/* **************************************
+ *	    DEFAULT THEME CSS           *
+ ************************************** */
+
+/* BODY */
+
+      body {
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+      .sidebar-nav {
+        padding: 9px 4px;
+      }
+      
+      ul {
+          margin:0px;
+      }
+      
+      li {
+          list-style-type: none;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    
+      .navbar-inverse {
+            background-color: #3b5999 !important;
+            -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+      }
+      .navbar-inverse .navbar-nav>li>a {
+          color: #efefef !important;
+      }
+      
+      .navbar-inverse .navbar-brand {
+        color: #efefef !important;
+      }
+      
+      .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus
+      {
+          color: #fff !important;
+          background-color: #f0ad4e !important;
+      }
+      
+      .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+          color: #fff !important;
+          background-color: #428bca !important;
+      }
+      
+      .navbar-fixed-top {
+          border :0 !important;
+      }
+      
+
+/* PAGINATION */
+
+#pagination {
+	text-align: center;
+}
+
+.rss-icon {
+    color:#f0ad4e;
+}
+
+/* ANNOUNCEMENTS */
+
+#announcement {
+    background-color: #87CEFA;
+    border-bottom: 1px solid #ddd;
+    padding: 0.4em;
+    text-align: center;    
+}
+
+#hotaruFooterImg {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAIAAAD8q9/YAAAAB3RJTUUH2gYaAwQqcgRlOQAAAAlwSFlzAAALEgAACxIB0t1+/AAAAARnQU1BAACxjwv8YQUAAAC/SURBVHjaY9RxCmEYSYAFiC/sWTHQzqATMHCJYIGzBtoxCEDTCGAaaN/RG4x6GBXAUxcyA40NR7hkcRlFBgBmPXjuw8pAVoAVsJBkH9CtEOMgDGQ2VgYal0IANAQSWMgMTFn8gLCHB2EZTomTCHsYHktkOAUzHmjhc8z0hUcLlQsttCxEI6/iMhZSZFAzD2PNPMRogQQEhRGOPw7hxuKPYUZg05JahQq1AO1KDaA3R1w9DE3Sg7AophFgHGm9JQBO3Ieox76VnwAAAABJRU5ErkJggg==);
+    width:80px;
+    height:15px;    
+}
+
+#rss_icon { margin-top: -0.2em; }
+
+
+.bold_red { color: red; font-weight: bold; }
+
+/* SITE CLOSED MESSAGE */
+
+#site_closed { background-color: #fff; border-top: 2px solid #262626; border-bottom: 2px solid #262626; 
+		text-align: center; margin-top: 4em; font-size: 1.6em; line-height: 1.8em; }
+		
+#site_closed_admin_link { font-size: 8pt; margin-top: 1.0em; }
+
+.debug { font-size: 0.8em; }
+
+#sidebar ul li { padding: 0.5em;  }
+
+.metadata {
+    display: block;
+    font-size: 11px;
+    color: #999;
+}
+
+
+.account-nav .avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.account-nav-small .content {
+    margin-left: 42px;
+}
+
+.account-nav .avatar {
+    top: 10px;
+    left: 22px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.account-nav .content {
+    line-height: 14px;
+    margin-top: 4px;
+}
+
+.account-nav {
+    min-height: 32px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 0;
+}
+
+.media-body ul { padding-left: 0; }

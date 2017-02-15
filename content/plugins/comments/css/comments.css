@@ -1,0 +1,125 @@
+/* comments */
+#comments_wrapper {
+    margin-bottom: 20px;
+}
+#comments_wrapper h2 {
+	padding-bottom: 0em;
+}
+
+#comments_wrapper .avatar_wrapper {	
+        padding: 0 0.6em 0.6em 0;
+        position: absolute;
+        left: 0;
+        display: inline-block;
+        width: 36px;
+}
+
+.comment_footer {
+    
+}
+.comment {
+	background-color: #fff;
+	margin-top: 1.0em;	
+	border: 0;
+        position: relative;
+        margin-right:12px;
+        padding-bottom:24px;
+        clear:both;
+}
+
+.comment_reply_wrapper {
+	margin:2px 4px;
+        float:left;
+}
+.comment_reply_link {
+    
+}
+
+.comment_edit_link {
+	
+        float:right;
+}
+
+.comment>.comment_body {
+        width: auto;
+        margin-left: 50px;
+        position: relative;
+        margin-right: 1px;
+}
+
+.comment_body>.comment_content {
+        width: auto;
+        border: 1px solid #DDE4ED;
+        padding: 5px 8px 8px;
+        border-left-width: 2px;
+        position: relative;
+}
+
+.comment_body>.comment_content:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: -7px;
+        top: 11px;
+        width: 8px;
+        height: 8px;
+        border: 2px solid #DDE4ED;
+        border-width: 2px 0 0 2px;
+        background-color: #FFF;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+}
+
+.comment_name {
+        display: block;
+        color: #999;
+}
+
+.comment_date {
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        color: #666;
+        position: absolute;
+        right: 9px;
+        top: 6px;
+}
+
+.comment_text {
+        display: block;
+        position: relative;
+        margin-top: 2px;
+        font-size: 13px;
+}
+
+.comment_form textarea {
+	width: 100%;
+}
+
+.comment_form_off {
+	margin-top: 2.0em;
+	text-align: center;
+}
+
+.comment_status {
+	float: right;
+	text-align: right;
+}
+
+#post_comments_admin {
+	float: right;
+	text-align: right;
+}
+
+#post_comments_admin li {
+	padding: 0;
+}
+
+.comment_post_link {margin: 0.6em 0.6em 0.4em; text-align:right;}
+
+.comment_show_hide  { margin-left: 2.0em; font-size: 0.8em; }
