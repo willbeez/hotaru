@@ -106,9 +106,9 @@
         <?php if ($h->debug && $h->isAdmin()) { echo '<span class="admin_guide label label-danger" style="display:none; position:absolute; left:-140px;">show_post_extras</span>'; } ?>
         <?php $h->pluginHook('show_post_extras'); ?>
         
+<!--
         <div class="hidden-xs put this in plugin :)">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- narrow -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"
              data-ad-client="ca-pub-5634143173853305"
@@ -117,6 +117,7 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
         </div>
+-->
         
     </div>
     

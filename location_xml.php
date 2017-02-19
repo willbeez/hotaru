@@ -34,8 +34,8 @@ while ($row = @mysql_fetch_assoc($result)){
   $node = $doc->create_element("marker");
   $newnode = $parnode->append_child($node);
 
-  $newnode->set_attribute("name", $row['post_title']);
-  $newnode->set_attribute("content", $row['post_content']);
+  $newnode->set_attribute("name", urldecode( $row['post_title']));
+  $newnode->set_attribute("content", urldecode($row['post_content']));
   $newnode->set_attribute("lat", $row['post_lat']);
   $newnode->set_attribute("lng", $row['post_lng']);
   $newnode->set_attribute("type", $row['post_type']);

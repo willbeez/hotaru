@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Includes settings and constructs Hotaru.
  *

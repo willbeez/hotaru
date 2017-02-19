@@ -24,6 +24,7 @@
  * @link      http://www.hotarucms.org/
  */
 
+ error_log( "HELLO WORLD" );   
 $i=0;
 foreach ($h->vars['pagedResults']->items as $post) {
     $h->readPost(0, $post);
@@ -31,12 +32,13 @@ foreach ($h->vars['pagedResults']->items as $post) {
 ?>
 
 <?php
-    
-    if ($i % 6 == 0 )
-    {?>
+// WJB
+//    if ($i % 6 == 0 )
+//    {
+?>
+<!-- WJB
     <div style="margin-left:60px;margin-bottom:30px;margin-top:-10px;">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- narrow -->
         <ins class="adsbygoogle"
              style="display:inline-block;width:728px;height:90px"
              data-ad-client="ca-pub-5634143173853305"
@@ -45,8 +47,10 @@ foreach ($h->vars['pagedResults']->items as $post) {
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+-->
     <?php
-    }
+    // WJB
+    // }
     ?>
 
     <!-- POST -->
