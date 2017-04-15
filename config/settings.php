@@ -2,7 +2,7 @@
  /* Configuration file for Hotaru CMS. */
 
 // Paths
-define("BASEURL", 'http://localhost/hotaru/');    // e.g. http://www.mysite.com/    Needs trailing slash (/)
+define("BASEURL", 'http://54.175.50.39/');    // e.g. http://www.mysite.com/    Needs trailing slash (/)
 
 // Database details
 define("DB_USER", 'root');          		// Add your own database details
