@@ -1,0 +1,289 @@
+<?php 
+/**
+ * name: Default
+ * description: Default theme for Hotaru CMS
+ * version: 0.1
+ * author: shibuya246
+ * authorurl: http://hotarucms.org/member.php?1-Nick
+ *
+ * PHP version 5
+ *
+ * LICENSE: Hotaru CMS is free software: you can redistribute it and/or 
+ * modify it under the terms of the GNU General Public License as 
+ * published by the Free Software Foundation, either version 3 of 
+ * the License, or (at your option) any later version. 
+ *
+ * Hotaru CMS is distributed in the hope that it will be useful, but WITHOUT 
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+ * FITNESS FOR A PARTICULAR PURPOSE. 
+ *
+ * You should have received a copy of the GNU General Public License along 
+ * with Hotaru CMS. If not, see http://www.gnu.org/licenses/.
+ * 
+ * @category  Content Management System
+ * @package   HotaruCMS
+ * @author    shibuya246 <admin@hotarucms.org>
+ * @copyright Copyright (c) 2009 - 2013, Hotaru CMS
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link      http://hotarucms.org/
+ */
+
+// set a custom home page:
+$h->setHome();
+
+// get language
+$h->includeThemeLanguage();
+
+// get announcements
+$announcements = $h->checkAnnouncements();
+
+// get settings:
+$h->vars['theme_settings'] = $h->getThemeSettings();
+
+// plugins work here before anything is displayed. Return if overriding.
+if ($h->pluginHook('theme_index_top')) { return false; }
+
+// display header if not overriden by a plugin
+if (!$h->pluginHook('theme_index_header')) { $h->template('header'); }
+
+// check whether we have the fluid setting. If not make false
+$fluid = isset($h->vars['theme_settings']['fullWidth']) && $h->vars['theme_settings']['fullWidth'] == 'checked'  ? '-fluid' : '';
+
+// check for span from settings. if none then make default of 9
+$leftSpan = isset($h->vars['theme_settings']['leftSpan']) ? $h->vars['theme_settings']['leftSpan'] : 9;
+
+$width = ($h->sidebars) ? $leftSpan : 12;
+$sideBarWidth = 12 - $leftSpan;
+
+?>
+
+<body>
+
+	<?php $h->pluginHook('post_open_body'); ?>	
+
+        <!-- NAVIGATION -->
+        <?php echo $h->template('navigation'); ?>
+	
+        <?php if ($announcements) { ?>
+		<div id="announcement">
+			<?php $h->pluginHook('announcement_first'); ?>
+			<?php foreach ($announcements as $announcement) { echo $announcement . "<br/>"; } ?>
+			<?php $h->pluginHook('announcement_last'); ?>
+		</div>
+	<?php } ?>
+		
+        <div id="header_end">
+            <?php if (!$h->isActive('categories')) { echo '<br/>'; } ?>
+                <!-- CATEGORIES, ETC --> 
+                <?php $h->pluginHook('header_end'); ?>
+        </div>
+        
+	<div class="container<?php echo $fluid; ?>">
+            <div class="row clearfix">                
+ 
+                <?php if ($h->isDebug && $h->isAdmin) {
+                    $h->showMessages(); 
+                } ?>
+                
+		<div id="content">
+			
+			<div id="main_container" class="col-md-<?php echo $width; ?>">
+				<div id="main">
+
+					<!-- BREADCRUMBS -->
+					<ul class='breadcrumb'>
+						<?php echo $h->breadcrumbs("/"); ?>
+					</ul>
+					
+					<!-- POST BREADCRUMBS -->
+					<?php $h->pluginHook('theme_index_post_breadcrumbs'); ?>
+					
+					<!-- FILTER TABS -->
+					<?php $h->pluginHook('theme_index_pre_main'); ?>
+					
+					<!-- MAIN -->                                                                                  
+					<?php if (!$h->pluginHook('theme_index_main')) {
+                                            $h->template($h->pageName, 'pages'); 
+                                        } ?>
+
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<!-- SIDEBAR -->
+			<?php if ($h->sidebars) { ?>
+                            <div class="col-md-<?php echo $sideBarWidth; ?>">
+                            <?php if (!$h->pluginHook('theme_index_sidebar')) { $h->template('sidebar'); } ?>					
+
+    <div id="map">
+</div>
+    <style scoped>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 200px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 200px;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <script>
+      var customLabel = {
+        restaurant: {
+          label: 'R'
+        },
+        bar: {
+          label: 'B'
+        }
+      };
+
+        function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(25.799332, -78.848525),
+          zoom: 12
+        });
+        var infoWindow = new google.maps.InfoWindow;
+
+          // Change this depending on the name of your PHP or XML file
+          downloadUrl('http://192.168.2.107/hotaru/location_xml.php', function(data) {
+            var xml = data.responseXML;
+            var markers = xml.documentElement.getElementsByTagName('marker');
+            Array.prototype.forEach.call(markers, function(markerElem) {
+              var name = markerElem.getAttribute('name');
+              var address = markerElem.getAttribute('address');
+              var type = markerElem.getAttribute('type');
+              var point = new google.maps.LatLng(
+                  parseFloat(markerElem.getAttribute('lat')),
+                  parseFloat(markerElem.getAttribute('lng')));
+
+              var infowincontent = document.createElement('div');
+              var strong = document.createElement('strong');
+              strong.textContent = name
+              infowincontent.appendChild(strong);
+              infowincontent.appendChild(document.createElement('br'));
+
+              var text = document.createElement('text');
+              text.textContent = address
+              infowincontent.appendChild(text);
+              var icon = customLabel[type] || {};
+              var marker = new google.maps.Marker({
+                map: map,
+                position: point,
+                label: icon.label
+              });
+              marker.addListener('click', function() {
+                infoWindow.setContent(infowincontent);
+                infoWindow.open(map, marker);
+              });
+            });
+          });
+
+
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+        }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+      }
+
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+
+      function doNothing() {}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO1oM1WaVflhkzKP48I_hoBgbtbpZlWhk&callback=initMap">
+    </script>
+
+
+
+
+
+
+                            </div>
+                        <?php } ?>
+
+		</div> <!-- close "content" -->
+                
+            </div>
+
+            <hr/>
+
+
+
+
+
+
+
+
+
+
+		<!-- FOOTER -->
+		<footer>
+			<?php if (!$h->pluginHook('theme_index_footer')) { $h->template('footer'); } ?>
+		</footer>
+        </div>
+	
+
+	<?php $h->pluginHook('pre_close_body'); ?>
+
+        <div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                      <h4 class="modal-title" id="myLargeModalLabel">Modal</h4>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+              </div>
+            </div>
+        </div>
+        
+</body>
+<noscript>
+    <div id="no_javascript">
+      <strong><?php echo $h->lang('javascript_disabled'); ?></strong>
+    </div>
+</noscript>
+</html>
